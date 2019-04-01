@@ -68,6 +68,7 @@
 <p>从Windows换Mac之后，我的博客也丢失了。今天终于把它找回来，还换了新的主题，遗憾的是之前的文章找不回了，但索性就不要了，新的开始！所以我这个也不算找回，算是新搭建。</p>
 <p>不管怎样，记录一下。</p>
 </blockquote>
+<a id="more"></a>
 <ol>
 <li><p>首先Mac下载Git，node，hexo</p>
 <p><code>brew install node</code></p>
@@ -77,20 +78,20 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir blog</span><br><span class="line">cd blog</span><br><span class="line">hexo init</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>调试一下，看成功没。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line"><span class="meta">#</span> =hexo generate 目的是为了自动生成index.html等文件</span><br><span class="line">hexo s</span><br><span class="line"><span class="meta">#</span> 启动本地服务 出现以下信息说明启动成功，浏览器试试看</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line"><span class="meta">#</span><span class="bash"> =hexo generate 目的是为了自动生成index.html等文件</span></span><br><span class="line">hexo s</span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动本地服务 出现以下信息说明启动成功，浏览器试试看</span></span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>将博客关联到Github</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>Github 建立和设立公钥就不写了，网上很多信息</span><br><span class="line">vim _config.yml</span><br><span class="line"><span class="meta">#</span>添加或更改：</span><br><span class="line">deploy:</span><br><span class="line">   type: git</span><br><span class="line">   repo: https://github.com/xxxxxx/xxxxxx.github.io #写成自己的github地址就OK</span><br><span class="line">   branch: master</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">Github 建立和设立公钥就不写了，网上很多信息</span></span><br><span class="line">vim _config.yml</span><br><span class="line"><span class="meta">#</span><span class="bash">添加或更改：</span></span><br><span class="line">deploy:</span><br><span class="line">   type: git</span><br><span class="line">   repo: https://github.com/xxxxxx/xxxxxx.github.io #写成自己的github地址就OK</span><br><span class="line">   branch: master</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>OK了</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line">hexo d </span><br><span class="line"><span class="meta">#</span>若出现错误，大概率是要需要你安装hexo-git</span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"><span class="meta">#</span>安装好即可</span><br><span class="line">hexo d</span><br><span class="line"><span class="meta">#</span>打开：xxxxxx.github.io</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line">hexo d </span><br><span class="line"><span class="meta">#</span><span class="bash">若出现错误，大概率是要需要你安装hexo-git</span></span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"><span class="meta">#</span><span class="bash">安装好即可</span></span><br><span class="line">hexo d</span><br><span class="line"><span class="meta">#</span><span class="bash">打开：xxxxxx.github.io</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://lelelelelez.github.io/2019/03/31/重新找回hexo-github的博客/" data-id="cjtvqb4w900013nfy1lyvd533" class="article-share-link">分享</a>
+      <a data-url="https://lelelelelez.github.io/2019/03/31/重新找回hexo-github的博客/" data-id="cjtyc5q6h0003xbtp0nmton4m" class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
 
@@ -101,6 +102,15 @@
   
     
   <nav class="article-nav">
+    
+      <a href="/2019/04/01/MarchSummary/" class="article-nav-link">
+        <strong class="article-nav-caption"></strong>
+        <div class="article-nav-title">
+          
+            三月小结
+          
+        </div>
+      </a>
     
     
       <a href="/2019/03/30/hello-world/" class="article-nav-link">

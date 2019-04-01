@@ -56,6 +56,61 @@
 
     
       
+        <article id="post-MarchSummary" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/2019/04/01/MarchSummary/">三月小结</a>
+    </h2>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/04/01/MarchSummary/" class="article-date">
+  <time datetime="2019-04-01T12:32:58.000Z" itemprop="datePublished">2019-04-01</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <p>本该昨天把这个写完，但是磨磨蹭蹭，4月1号写完已经很不错了。</p>
+<p>三月对我来说，应该是迷茫，自我否定又自我肯定的一个月。小结一下。</p>
+        
+          <a class="article-more-link" href="/2019/04/01/MarchSummary/">阅读全文...</a>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://lelelelelez.github.io/2019/04/01/MarchSummary/" data-id="cjtyc5q6g0002xbtpl7b44ug9" class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活记录/">生活记录</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+
+
+
+      
         <article id="post-重新找回hexo-github的博客" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -88,7 +143,7 @@
     <div class="article-gallery-photos">
       
         
-          <a class="article-gallery-img" href="/2019/03/31/重新找回hexo-github的博客/" rel="gallery_cjtvqb4w900013nfy1lyvd533">
+          <a class="article-gallery-img" href="/2019/03/31/重新找回hexo-github的博客/" rel="gallery_cjtyc5q6h0003xbtp0nmton4m">
             <img src="/images/hexophoto.png" itemprop="image">
           </a>
         
@@ -103,29 +158,13 @@
 <p>从Windows换Mac之后，我的博客也丢失了。今天终于把它找回来，还换了新的主题，遗憾的是之前的文章找不回了，但索性就不要了，新的开始！所以我这个也不算找回，算是新搭建。</p>
 <p>不管怎样，记录一下。</p>
 </blockquote>
-<ol>
-<li><p>首先Mac下载Git，node，hexo</p>
-<p><code>brew install node</code></p>
-<p><code>npm install -g hexo-cli</code></p>
-</li>
-<li><p>新建目录，并初始化为hexo目录</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir blog</span><br><span class="line">cd blog</span><br><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>调试一下，看成功没。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line"><span class="meta">#</span> =hexo generate 目的是为了自动生成index.html等文件</span><br><span class="line">hexo s</span><br><span class="line"><span class="meta">#</span> 启动本地服务 出现以下信息说明启动成功，浏览器试试看</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>将博客关联到Github</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>Github 建立和设立公钥就不写了，网上很多信息</span><br><span class="line">vim _config.yml</span><br><span class="line"><span class="meta">#</span>添加或更改：</span><br><span class="line">deploy:</span><br><span class="line">   type: git</span><br><span class="line">   repo: https://github.com/xxxxxx/xxxxxx.github.io #写成自己的github地址就OK</span><br><span class="line">   branch: master</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>OK了</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line">hexo d </span><br><span class="line"><span class="meta">#</span>若出现错误，大概率是要需要你安装hexo-git</span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"><span class="meta">#</span>安装好即可</span><br><span class="line">hexo d</span><br><span class="line"><span class="meta">#</span>打开：xxxxxx.github.io</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-
+        
+          <a class="article-more-link" href="/2019/03/31/重新找回hexo-github的博客/">阅读全文...</a>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://lelelelelez.github.io/2019/03/31/重新找回hexo-github的博客/" data-id="cjtvqb4w900013nfy1lyvd533" class="article-share-link">分享</a>
+      <a data-url="https://lelelelelez.github.io/2019/03/31/重新找回hexo-github的博客/" data-id="cjtyc5q6h0003xbtp0nmton4m" class="article-share-link">分享</a>
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
 
@@ -173,19 +212,13 @@
 
       
         <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+        
+          <a class="article-more-link" href="/2019/03/30/hello-world/">阅读全文...</a>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://lelelelelez.github.io/2019/03/30/hello-world/" data-id="cjtvqb4ud00003nfy6kcbx33e" class="article-share-link">分享</a>
+      <a data-url="https://lelelelelez.github.io/2019/03/30/hello-world/" data-id="cjtyc5q6b0000xbtpmcksfscf" class="article-share-link">分享</a>
       
     </footer>
 
