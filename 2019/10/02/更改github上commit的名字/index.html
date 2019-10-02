@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    更改github上commit的名字 |
+    
+    记录者</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-更改github上commit的名字" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      更改github上commit的名字
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/10/02/更改github上commit的名字/" class="article-date">
+  <time datetime="2019-10-02T11:20:58.000Z" itemprop="datePublished">2019-10-02</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <blockquote>
+<p>我又重新拾起自己的Github了</p>
+<p>最近在刷leetcode，之前刷的都没有记录下来，这次想记录到github上</p>
+<p>但是之前是用的公司邮箱commit，一直都没发现，后来觉察到想把之前提交的commit改成现在的邮箱</p>
+</blockquote>
+<a id="more"></a>
+<p>首先修改配置：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.email "youremail@google.com"</span><br><span class="line">git config --global user.name "your name"</span><br></pre></td></tr></table></figure>
+<p>这样之后提交的都会变成新邮箱，但是之前的我也想改回来。</p>
+<p>参考：<a href="https://blog.csdn.net/rainharder/article/details/76187678" target="_blank" rel="noopener">https://blog.csdn.net/rainharder/article/details/76187678</a></p>
+<p>可以通过脚本重写历史信息：</p>
+<ol>
+<li><p>创建一个你的 repo 的全新裸 clone （repo.git 替换为你的项目，下同）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone --bare https://github.com/user/repo.git</span><br><span class="line">cd repo.git</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写脚本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/sh</span></span><br><span class="line"></span><br><span class="line">git filter-branch --env-filter '</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">##这个位置更换######</span></span></span><br><span class="line">OLD_EMAIL="your-old-email@example.com"</span><br><span class="line">CORRECT_NAME="Your Correct Name"</span><br><span class="line">CORRECT_EMAIL="your-correct-email@example.com"</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 可以通过或关系重写多个用户名</span></span><br><span class="line">if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]</span><br><span class="line">then</span><br><span class="line">    export GIT_COMMITTER_NAME="$CORRECT_NAME"</span><br><span class="line">    export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"</span><br><span class="line">fi</span><br><span class="line">if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]</span><br><span class="line">then</span><br><span class="line">    export GIT_AUTHOR_NAME="$CORRECT_NAME"</span><br><span class="line">    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"</span><br><span class="line">fi</span><br><span class="line">' --tag-name-filter cat -- --branches --tags</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行脚本</p>
+</li>
+<li><p>把正确历史 push 到 Github</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push --force --tags origin 'refs/heads/*'</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>清除临时 clone</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ..</span><br><span class="line">rm -rf repo.git</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://lelelelelez.github.io/2019/10/02/更改github上commit的名字/" data-id="ck196uffz0005r1wfeqyiynuc" class="article-share-link">分享</a>
+      
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+    
+      <a href="/2019/06/30/六月小结/" class="article-nav-link">
+        <strong class="article-nav-caption"></strong>
+        <div class="article-nav-title">六月小结</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <div class="float-right">
+      <ul class="list-inline">
+  
+    <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+</ul>
+    </div>
+    <ul class="list-inline">
+      <li>&copy; 2019 记录者</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="记录者"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">主页</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">归档</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">相册</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">关于我</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+<script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>
